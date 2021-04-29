@@ -1,1 +1,0 @@
-mongodb://cookbook:unicorncollege@cluster0-shard-00-00.emwhf.mongodb.net:27017,cluster0-shard-00-01.emwhf.mongodb.net:27017,cluster0-shard-00-02.emwhf.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-55lsqi-shard-0&authSource=admin&retryWrites=true&w=majority
