@@ -4,6 +4,7 @@ const PORT = process.env.PORT || 5000;
 const db = require("./databaze/connect");
 const getMaterials = require("./routes/GET/getMaterial");
 const saveMaterial = require("./routes/POST/saveMaterial");
+const cors = require("cors");
 db.connect();
 
 /**
@@ -16,7 +17,7 @@ db.connect();
 /**
  * Routy - GET
  */
-app.use("/",getMaterials);
+app.use("/",cors(),getMaterials);
 /**
  * Routy - POST
  */
