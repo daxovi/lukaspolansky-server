@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 const AddMaterials = () => {
     const [vstupOdUzivatele, setVstupOdUzivatele] = useState("");
 const vlozeniDoDb = () => {
-    fetch("http://localhost:5000/save-material",{
+    fetch("http://localhost:4000/save-material",{
         method:"post",
         headers:{
             "Accept":"application/json",

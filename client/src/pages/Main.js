@@ -1,37 +1,26 @@
-import React,{useState, useEffect} from 'react'
-import Material from "../components/Material"
+import React, { useEffect } from 'react'
+import { useHistory } from "react-router-dom";
+import { loggedIn } from '../context/CheckLogin';
+
 const Main = () => {
-    const [materialy, setMaterialy] = useState([]);
-    const [serverMessage, setServerMessage] = useState("");
-    const [kliknutoUzivatelem, setKliknutoUzivatelem] = useState("");
+    const history = useHistory();
 
     useEffect(() => {
-        pridaniMaterialu();
-    }, [])
+        loggedIn().then((value) => {
+            if (value) {
+                history.push("./dashboard");
+            }
+        })
+    })
 
-    const pridaniMaterialu = async () => {
-    setServerMessage("načítám data");
-     const data = await fetch("http://localhost:5000/get-materials");
-     const finalData = await data.json();
-     const {msg, documents} = finalData;
-     console.log(msg, documents)
-    setMaterialy(documents);
-    setServerMessage(msg);
-    }
-    const kliknuto = (material) => {
-        setKliknutoUzivatelem(material);
-    }
     return (
         <div>
-            {
-                materialy.map((material,index) => {
-                    return(
-                        <Material eventklik={kliknuto} key={index} name={material.name} cislovporadi={index}/>
-                    )                 
-                })
-            }
-            <div className="msg">{serverMessage}</div>
-            {kliknutoUzivatelem}
+            <h1>Vítejte u Lukiho</h1>
+            <p>Vítr skoro nefouká a tak by se na první pohled mohlo zdát, že se balónky snad vůbec nepohybují. Jenom tak klidně levitují ve vzduchu. Jelikož slunce jasně září a na obloze byste od východu k západu hledali mráček marně, balónky působí jako jakási fata morgána uprostřed pouště. Zkrátka široko daleko nikde nic, jen zelenkavá tráva, jasně modrá obloha a tři křiklavě barevné pouťové balónky, které se téměř nepozorovatelně pohupují ani ne moc vysoko, ani moc nízko nad zemí. Kdyby pod balónky nebyla sytě zelenkavá tráva, ale třeba suchá silnice či beton, možná by bylo vidět jejich barevné stíny - to jak přes poloprůsvitné barevné balónky prochází ostré sluneční paprsky.</p>
+            <div>
+                <button className='btn btn-positive' onClick={() => { history.push("/login") }}>Přihlásit se</button>
+                <button className="btn btn-minimal">požádat o přístupový kód</button>
+            </div>
         </div>
     )
 }

@@ -1,9 +1,13 @@
 const express = require("express");
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 4000;
 const db = require("./databaze/connect");
 const getMaterials = require("./routes/GET/getMaterial");
 const saveMaterial = require("./routes/POST/saveMaterial");
+
+const getUsers = require("./routes/GET/getUsers");
+const saveUser = require("./routes/POST/saveUser");
+
 const cors = require("cors");
 db.connect();
 
@@ -17,11 +21,14 @@ db.connect();
 /**
  * Routy - GET
  */
-app.use("/",cors(),getMaterials);
+app.use("/",cors(), getMaterials);
+app.use("/",cors(), getUsers);
+
 /**
  * Routy - POST
  */
 app.use("/", saveMaterial);
+app.use("/", saveUser);
 
 
 app.get("/", (request,response) => {
