@@ -16,12 +16,7 @@ const Course = () => {
 
     useEffect(() => {
         loggedIn().then((value) => {
-            if (!value) {
-                history.push("./login");
-            } else {
-                setUserObject(value);
-                console.log(value.course[0].url);
-            }
+            value ? setUserObject(value) : history.push("./login")
         });
     }, []);
 
