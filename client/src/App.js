@@ -5,6 +5,7 @@ import AddUser from "./pages/AddUser";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import Course from './pages/Course';
 
 const App = () => {
 
@@ -16,6 +17,8 @@ const App = () => {
         <Route exact path="/add-user" component={AddUser} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/course" component={Course} />
+
       </Switch>
     </BrowserRouter>
     </div>

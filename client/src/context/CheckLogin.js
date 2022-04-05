@@ -20,4 +20,3 @@ export const loggedIn = async () => {
     console.log(loggedUser);
     return loggedUser;
 }
-

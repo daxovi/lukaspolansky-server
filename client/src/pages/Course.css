@@ -1,0 +1,18 @@
+.completed {
+    display: block;
+    width: 100%;
+    margin: auto;
+}
+
+.status {
+    padding-top: 15px;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    flex-direction: row;
+}
+
+.controls button {
+    margin-left: 10px;
+}
