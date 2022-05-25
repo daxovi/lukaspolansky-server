@@ -26,7 +26,7 @@ const Course = () => {
 
     return (
         <div>
-            <h1>Course</h1>
+            <h1>kurz</h1>
             <VideoPlayer handleEnd={handleCompleted} file={videoFile} />
             <VideoStatus completed={completed} handleDone={handleDone} handleSkip={handleSkip} />
             <Footer user={userObject.name} />

@@ -24,7 +24,7 @@ const Dashboard = () => {
     return (
         <div>
             <h1>
-                Dashboard
+                přehled
             </h1>
             <div>
                 Následující kurz: {userObject.course ? userObject.course[0].url : "nic"}
