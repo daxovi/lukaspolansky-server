@@ -7,16 +7,23 @@ import Footer from '../components/Footer';
 const Dashboard = () => {
     const history = useHistory();
     const [userObject, setUserObject] = useState({});
-    const [course, setCourse] = useState([]);
+    const [lesson, setLesson] = useState([]);
 
-    useEffect(() => { 
+    useEffect(() => {
         loggedIn().then((value) => {
             if (!value) {
                 history.push("./login");
             } else {
                 setUserObject(value);
-                setCourse(value.course);
-                console.log(value.course[0].url);
+
+                for (let lesson of value.course) {
+                    console.log(lesson);
+                    if(lesson.completed == false) {
+                        setLesson(lesson);
+                        console.log(lesson.url);
+                        break;
+                    }
+                }
             }
         })
      }, [])
@@ -27,7 +34,7 @@ const Dashboard = () => {
                 Dashboard
             </h1>
             <div>
-                Následující kurz: {userObject.course ? userObject.course[0].url : "nic"}
+                Následující kurz: {lesson ? lesson.url : "nic"}
             </div>
             <Footer user={userObject.name} />
 
