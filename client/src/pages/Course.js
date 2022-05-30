@@ -28,6 +28,7 @@ const Course = () => {
                     if (lesson.completed == false) {
                         setLesson(lesson);
                         setLessonNr(index);
+                        console.log(index);
                         break;
                     }
                 }
@@ -44,7 +45,7 @@ const Course = () => {
         fetch(url, {
             method: 'PATCH',
             body: JSON.stringify({
-                "course.0.completed": true,
+                ["course." + lessonIndex + ".completed"]: true
             }),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
@@ -58,7 +59,9 @@ const Course = () => {
     const handleSkip = () => { console.log("kliknuto na preskocit") }
     const handleDone = () => {
         console.log("kliknuto na pokracovat");
-        updateLesson(0);
+        updateLesson(lessonNr);
+        // setLessonNr(lessonNr + 1);
+        window.location.reload();
     }
 
     return (
