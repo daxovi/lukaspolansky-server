@@ -27,6 +27,7 @@ h1 {
 
 .btn {
   padding: 10px 20px;
+  margin-left: 10px;
   background: #CE4760;
   border: none;
   text-transform: uppercase;
@@ -63,11 +64,15 @@ h1 {
   transform: none;
   box-shadow: none;
   padding: 0;
-  margin: 10px 20px;
+  margin: 0px 20px;
   font-weight: normal;
   text-transform: none;
   color: #424B54;
   background: white;
   text-decoration: underline;
   text-decoration-style: dotted;
+}
+
+.btn:nth-of-type(1) {
+  margin: 0px;
 }

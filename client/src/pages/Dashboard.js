@@ -31,7 +31,7 @@ const Dashboard = () => {
     return (
         <div>
             <h1>
-                Dashboard
+                přehled
             </h1>
             <div>
                 Následující kurz: {lesson ? lesson.url : "nic"}
