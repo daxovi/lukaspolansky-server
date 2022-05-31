@@ -79,7 +79,18 @@ MongoDB - nová databáze
     ],
     "__v":{"$numberInt":"0"}
 }
+```
 
+Předání proměnné do klíče funkcí
+```javascript
+const func = (m) => {
+    return { ["eval" + m]:1 }
+}
+
+func(3)
+// {eval3: 1}
+JSON.stringify(func(85))
+// '{"eval85":1}'
 ```
 
 MongoDB - minimální databáze bez url, ostatní hardcoded
