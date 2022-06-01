@@ -1,3 +1,10 @@
+barvy
+písmo #424B54
+tlačítko zelené #138A36
+tlačítko zelené #CE4760
+https://coolors.co/palette/9b5de5-f15bb5-fee440-00bbf9-00f5d4
+
+
 použití proměnné v klíči JSON dat
 
 ```javascript
@@ -41,18 +48,21 @@ MongoDB - nová databáze
             "title":"Protažení 1",
             "filename":"url nazev souboru videa i obrazku",
             "completed":0, //skip 2, completed 1
+            "date":"Date.now",
         },
         {
             "_id":{"$oid":"62486f0f6e8ef9831785041f"},
             "title":"Rozdýchání 1",
             "filename":"url nazev souboru videa i obrazku",
             "completed":0, //skip 2, completed 1
+            "date":"Date.now",
         },
         {
             "_id":{"$oid":"62486f0f6e8ef9831785041f"},
             "title":"Zpívání 1",
             "filename":"url nazev souboru videa i obrazku",
             "completed":0, //skip 2, completed 1
+            "date":"Date.now",
         },
         "eval":[-1] // -1 hodnoceni je neaktivni, 0 je prazdne hodnoceni, 457124 je uz po hodnoceni
     ],
@@ -61,19 +71,22 @@ MongoDB - nová databáze
             "_id":{"$oid":"62486f0f6e8ef9831785041f"},
             "title":"Protažení 1",
             "filename":"url nazev souboru videa i obrazku",
-            "completed":0
+            "completed":0,
+            "date":"Date.now",
         },
         {
             "_id":{"$oid":"62486f0f6e8ef9831785041f"},
             "title":"Rozdýchání 1",
             "filename":"url nazev souboru videa i obrazku",
-            "completed":0
+            "completed":0,
+            "date":"Date.now",
         },
         {
             "_id":{"$oid":"62486f0f6e8ef9831785041f"},
             "title":"Zpívání 1",
             "filename":"url nazev souboru videa i obrazku",
-            "completed":0
+            "completed":0,
+            "date":"Date.now",
         },
         "eval":[-1]
     ],

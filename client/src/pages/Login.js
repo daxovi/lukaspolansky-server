@@ -40,16 +40,21 @@ const Login = () => {
             }
         })
         setLoginMessage("Uživatelské jméno je neplatné");
+        setTimeout(() => {
+            setVstupOdUzivatele("");
+        }, 2000);        
     }
 
     return (
         <div>
             <div>
+                <form>
                 <input type="text" value={vstupOdUzivatele} onInput={(e) => {
                     setVstupOdUzivatele(e.target.value);
                 }} />
                 <br /> <br />
                 <button type="submit" className='btn btn-positive' onClick={checkUser}>Přihlásit uživatele</button>
+                </form>
             </div>
             <p>{loginMessage}</p>
         </div>
