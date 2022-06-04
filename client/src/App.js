@@ -13,21 +13,21 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
-    <Header />
-    <div className="content">
-      
-    
-      <Switch>
-        <Route exact path="/" component={Main} />
-        <Route exact path="/add-user" component={AddUser} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/dashboard" component={Dashboard} />
-        <Route exact path="/course" component={Course} />
+        <Header />
+        <div className="content">
 
-      </Switch>
-      </div>
-    </BrowserRouter>
-    
+
+          <Switch>
+            <Route exact path="/" component={Main} />
+            <Route exact path="/add-user" component={AddUser} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/course" component={Course} />
+
+          </Switch>
+        </div>
+      </BrowserRouter>
+
     </div>
   )
 }

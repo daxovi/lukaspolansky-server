@@ -24,12 +24,13 @@ const Course = () => {
                 setUserObject(value);
 
                 for (let [index, lesson] of value.course.entries()) {
-                    console.log(lesson);
                     if (lesson.completed == false) {
                         setLesson(lesson);
                         setLessonNr(index);
-                        console.log(index);
+                        console.log(`DEBUG: Následuje lekce číslo: ${index} s názvem ${lesson}.`);
                         break;
+                    } else {
+                        console.log(`DEBUG: Lekce číslo: ${index} s názvem ${lesson} je dokončená.`);
                     }
                 }
             }

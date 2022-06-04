@@ -15,8 +15,9 @@ export const loggedIn = async () => {
     documents.forEach((entry) => {
         if (entry.name === user) {
             loggedUser = entry;
+            console.log(`DEGUG: Přihlášený uživatel: ${entry.name}`);
         }
     })
-    console.log(loggedUser);
+    
     return loggedUser;
 }
