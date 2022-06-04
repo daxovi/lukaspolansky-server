@@ -1,9 +1,9 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
+import { useContext } from 'react';
 
 const Header = (props) => {
     const history = useHistory();
-
 
     return (
         <div className="header">
@@ -12,6 +12,7 @@ const Header = (props) => {
                     <ul>
                         <li>o projektu</li>
                         <li>kurz</li>
+                        <li>Ahoj {props.userObject ? props.userObject.name : "neznámý uživateli"}</li>
                     </ul>
                     <ul>
                         <li><button onClick={() => { history.push("./dashboard") }} className="btn">přehled</button></li>

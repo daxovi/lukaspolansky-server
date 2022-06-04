@@ -14,7 +14,7 @@ const VideoPlayer = (props) => {
                 width='100%'
                 height='100%'
                 onEnded={props.handleEnd}
-                controls="true"
+                controls={true}
             />
         </div>
     )

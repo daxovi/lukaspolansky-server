@@ -5,15 +5,6 @@ import { loggedIn } from '../context/CheckLogin.js';
 const Login = () => {
     const [vstupOdUzivatele, setVstupOdUzivatele] = useState("");
     const history = useHistory();
-    
-    useEffect(() => {
-        loggedIn().then((value) => {
-            console.log(`Kontrola přihlášení uživatele.`)
-            if (value) {
-                history.push("./dashboard");
-            }
-        });
-    }, []);
 
     // Funkce nastaví hodnotu místního úložiště user
     // potom useEffect zkontroluje jestli se shoduje se jménem z databáze

@@ -6,28 +6,41 @@ import AddUser from "./pages/AddUser";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import { loggedIn } from './context/CheckLogin';
 import Course from './pages/Course';
+import { useState, createContext, useEffect } from "react";
+import Footer from './components/Footer';
 
 const App = () => {
+  const [userObject, setUserObject] = useState();
+
+  useEffect(() => {
+    loggedIn().then((value) => {
+      if (value) {
+        setUserObject(value);
+      }
+    });
+  }, [])
 
   return (
     <div>
       <BrowserRouter>
-        <Header />
+        <Header userObject={userObject} />
         <div className="content">
-
-
           <Switch>
             <Route exact path="/" component={Main} />
             <Route exact path="/add-user" component={AddUser} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/course" component={Course} />
-
+            <Route exact path="/login" component={userObject ? Dashboard : Login} />
+            <Route exact path="/dashboard">
+              {userObject ? <Dashboard userObect={userObject} /> : <Login />}
+            </Route>
+            <Route exact path="/course">
+            {userObject ? <Course userObect={userObject} /> : <Login />}
+              </Route>
           </Switch>
         </div>
+        <Footer userObject={userObject} />
       </BrowserRouter>
-
     </div>
   )
 }

@@ -7,7 +7,7 @@ import VideoPlayer from "../components/VideoPlayer";
 import VideoStatus from "../components/VideoStatus";
 import "./Course.css";
 
-const Course = () => {
+const Course = (props) => {
     const [userObject, setUserObject] = useState({});
     const [completed, setCompleted] = useState(false);
     const [lesson, setLesson] = useState([]);
@@ -15,27 +15,6 @@ const Course = () => {
     const history = useHistory();
 
     const videoFile = "/video/c1a.mp4";
-
-    useEffect(() => {
-        loggedIn().then((value) => {
-            if (!value) {
-                history.push("./login");
-            } else {
-                setUserObject(value);
-
-                for (let [index, lesson] of value.course.entries()) {
-                    if (lesson.completed == false) {
-                        setLesson(lesson);
-                        setLessonNr(index);
-                        console.log(`DEBUG: Následuje lekce číslo: ${index} s názvem ${lesson}.`);
-                        break;
-                    } else {
-                        console.log(`DEBUG: Lekce číslo: ${index} s názvem ${lesson} je dokončená.`);
-                    }
-                }
-            }
-        });
-    }, []);
 
     const updateLesson = (lessonIndex) => {
         const userId = userObject._id;
@@ -70,7 +49,6 @@ const Course = () => {
             <h1>kurz</h1>
             <VideoPlayer handleEnd={handleCompleted} file={videoFile} />
             <VideoStatus completed={completed} handleDone={handleDone} handleSkip={handleSkip} />
-            <Footer user={userObject.name} />
         </div>
     )
 }

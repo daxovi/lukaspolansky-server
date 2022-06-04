@@ -3,12 +3,12 @@ import { useHistory } from 'react-router-dom'
 import "./Footer.css";
 
 const Footer = (props) => {
-  const user = props.user
+  const message = props.userObject ? `Je přihlášený uživatel ` + props.userObject.name : "Nepřihlášený uživatel";
   const history = useHistory();
 
   return (
-    <div>
-      <div>Je přihlášený uživatel {user}!</div>
+    <div className="header--content">
+      <div>{message}</div>
       <br></br>
       <div className='controls'>
         <div>
@@ -19,7 +19,7 @@ const Footer = (props) => {
           <button className="btn btn-minimal">poslat připomínku</button>
           <button className='btn' onClick={() => {
             localStorage.setItem("user", JSON.stringify(""));
-            history.push("/");
+            window.location.reload();
           }}>Odhlásit se</button>
         </div>
       </div>
