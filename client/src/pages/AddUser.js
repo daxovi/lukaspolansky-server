@@ -12,6 +12,7 @@ const AddUser = () => {
             },
             body:JSON.stringify({name:vstupOdUzivatele})
         }).then((data) => {
+            console.log({data});
             return data.json();
         }).then((finalData) => {
             console.log(finalData.msg);

@@ -14,12 +14,16 @@ import Footer from './components/Footer';
 const App = () => {
   const [userObject, setUserObject] = useState();
 
-  useEffect(() => {
+  const updateDB = () => {
     loggedIn().then((value) => {
       if (value) {
         setUserObject(value);
       }
     });
+  }
+
+  useEffect(() => {
+    updateDB();
   }, [])
 
   return (
@@ -35,7 +39,7 @@ const App = () => {
               {userObject ? <Dashboard userObect={userObject} /> : <Login />}
             </Route>
             <Route exact path="/course">
-            {userObject ? <Course userObect={userObject} /> : <Login />}
+            {userObject ? <Course userObject={userObject} /> : <Login />}
               </Route>
           </Switch>
         </div>

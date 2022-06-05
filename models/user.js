@@ -1,25 +1,74 @@
 const mongoose = require("mongoose");
 
 const user = new mongoose.Schema({
-    name:{
-        type:String,
+    name: {
+        type: String,
     },
     course:
-    [{
-        url:{
-            type:String,
+        [{
+            title: String,
+            file: String,
+            completed: Number,
+            date: Date,
+            eval: [Number]
+
         },
-        completed:{
-            type:Boolean,
-        }
-    }, {
-        url:{
-            type:String,
+        {
+            title: String,
+            file: String,
+            completed: Number,
+            date: Date,
+            eval: [Number]
         },
-        completed:{
-            type:Boolean,
-        }
-    }],
+        {
+            title: String,
+            file: String,
+            completed: Number,
+            date: Date,
+            eval: [Number]
+        },
+        {
+            title: String,
+            file: String,
+            completed: Number,
+            date: Date,
+            eval: [Number]
+        },
+        {
+            title: String,
+            file: String,
+            completed: Number,
+            date: Date,
+            eval: [Number]
+        },
+        {
+            title: String,
+            file: String,
+            completed: Number,
+            date: Date,
+            eval: [Number]
+        },
+        {
+            title: String,
+            file: String,
+            completed: Number,
+            date: Date,
+            eval: [Number]
+        },
+        {
+            title: String,
+            file: String,
+            completed: Number,
+            date: Date,
+            eval: [Number]
+        },
+        {
+            title: String,
+            file: String,
+            completed: Number,
+            date: Date,
+            eval: [Number]
+        }],
 });
 
 module.exports = mongoose.model("User", user);
