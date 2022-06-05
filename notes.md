@@ -46,21 +46,21 @@ MongoDB - nová databáze
         {
             "_id":{"$oid":"62486f0f6e8ef9831785041f"},
             "title":"Protažení 1",
-            "filename":"url nazev souboru videa i obrazku",
+            "file":"url nazev souboru videa i obrazku",
             "completed":0, //skip 2, completed 1
             "date":"Date.now",
         },
         {
             "_id":{"$oid":"62486f0f6e8ef9831785041f"},
             "title":"Rozdýchání 1",
-            "filename":"url nazev souboru videa i obrazku",
+            "file":"url nazev souboru videa i obrazku",
             "completed":0, //skip 2, completed 1
             "date":"Date.now",
         },
         {
             "_id":{"$oid":"62486f0f6e8ef9831785041f"},
             "title":"Zpívání 1",
-            "filename":"url nazev souboru videa i obrazku",
+            "file":"url nazev souboru videa i obrazku",
             "completed":0, //skip 2, completed 1
             "date":"Date.now",
         },
