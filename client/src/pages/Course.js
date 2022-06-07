@@ -12,6 +12,7 @@ const Course = (props) => {
     const [completed, setCompleted] = useState(false);
     const [lesson, setLesson] = useState();
     const [lessonNr, setLessonNr] = useState(0);
+    const [lessonTitle, setLessonTitle] = useState("Kurz");
     const history = useHistory();
     const [videoFile, setVideoFile] = useState("1a.mp4");
 
@@ -28,6 +29,7 @@ const Course = (props) => {
                         setLesson(lesson);
                         setLessonNr(lessonIndex);
                         setVideoFile(lesson.file);
+                        setLessonTitle(lesson.title);
                         break;
                     }
                 } 
@@ -48,7 +50,12 @@ const Course = (props) => {
             },
         })
             .then((response) => response.json())
-            .then((json) => console.log({json}));
+            .then((json) => {
+                console.log({json});
+                if (state == 2) {
+                    window.location.reload()
+                }
+            });
     }
 
     const updateTime = (lessonIndex) => {
@@ -65,26 +72,31 @@ const Course = (props) => {
             },
         })
             .then((response) => response.json())
-            .then((json) => console.log({json}));
-    }
+            .then((json) => {
+                console.log({json});
+                // window.location.reload()
+            });
+        }
 
-    const handleCompleted = () => { setCompleted(true); }
+    const handleCompleted = () => { 
+        setCompleted(true); 
+        updateTime(lessonNr);
+        updateLesson(lessonNr, 1);
+    }
     const handleSkip = () => {
         console.log("kliknuto na preskocit")
-        updateLesson(lessonNr, 2);
         updateTime(lessonNr);
-        window.location.reload();
+        updateLesson(lessonNr, 2);
     }
     const handleDone = () => {
         console.log("kliknuto na pokracovat");
-        updateLesson(lessonNr, 1);
-        updateTime(lessonNr);
+        
         window.location.reload();
     }
 
     return (
         <div>
-            <h1>kurz</h1>
+            <h1>{lessonTitle}</h1>
             <VideoPlayer handleEnd={handleCompleted} file={`/video/${videoFile}.mp4`} />
             <VideoStatus completed={completed} handleDone={handleDone} handleSkip={handleSkip} />
         </div>
