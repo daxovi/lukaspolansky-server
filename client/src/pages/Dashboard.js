@@ -9,7 +9,8 @@ const Dashboard = (props) => {
     const [lessonTitle, setLessonTitle] = useState("test");
     const [preLessonTitle, setPreLessonTitle] = useState("kurz");
     const [preLessonDate, setPreLerssonDate] = useState("");
-    const [preLessonStatus, setPreLessonStatus] = useState(1);
+    const [preLessonStatus, setPreLessonStatus] = useState(0);
+    const date = Date.now();
 
     const days = [
         'neděli',
@@ -48,6 +49,18 @@ const Dashboard = (props) => {
         }
     }, [])
 
+    const PreStatus = (props) => {
+        if (props.isPreStatus) {
+            return (
+                <div>Předchozí kurz: {preLessonTitle} jste {(preLessonStatus == 1) ? "dokončili" : "přeskočili"} {preLessonDate}</div>
+            )
+        } else {
+            return (
+                <div></div>
+            )
+        }
+    }
+
     return (
         <div>
             <h1>
@@ -56,7 +69,7 @@ const Dashboard = (props) => {
             <div>
                 Následující kurz: {lessonTitle}
                 <br />
-                Předchozí kurz: {preLessonTitle} jste {(preLessonStatus == 1) ? "dokončili" : "přeskočili"} {preLessonDate}
+                <PreStatus isPreStatus={preLessonStatus > 0} />
                         </div>
         </div>
     )
