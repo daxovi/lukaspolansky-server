@@ -12,7 +12,7 @@ const Course = (props) => {
     const [completed, setCompleted] = useState(false);
     const [lesson, setLesson] = useState();
     const [lessonNr, setLessonNr] = useState(0);
-    const [lessonTitle, setLessonTitle] = useState("Kurz");
+    const [lessonTitle, setLessonTitle] = useState("kurz");
     const history = useHistory();
     const [videoFile, setVideoFile] = useState("1a.mp4");
 
@@ -22,17 +22,17 @@ const Course = (props) => {
             setUserObject(props.userObject);
 
             const lessons = props.userObject.course;
-                
-                for (let [lessonIndex, lesson] of lessons.entries()) {
-                    if (lesson.completed == 0) {
-                        console.log(lesson.title);
-                        setLesson(lesson);
-                        setLessonNr(lessonIndex);
-                        setVideoFile(lesson.file);
-                        setLessonTitle(lesson.title);
-                        break;
-                    }
-                } 
+
+            for (let [lessonIndex, lesson] of lessons.entries()) {
+                if (lesson.completed == 0) {
+                    console.log(lesson.title);
+                    setLesson(lesson);
+                    setLessonNr(lessonIndex);
+                    setVideoFile(lesson.file);
+                    setLessonTitle(lesson.title);
+                    break;
+                }
+            }
         }
     }, [])
 
@@ -51,7 +51,7 @@ const Course = (props) => {
         })
             .then((response) => response.json())
             .then((json) => {
-                console.log({json});
+                console.log({ json });
                 if (state == 2) {
                     window.location.reload()
                 }
@@ -73,13 +73,13 @@ const Course = (props) => {
         })
             .then((response) => response.json())
             .then((json) => {
-                console.log({json});
+                console.log({ json });
                 // window.location.reload()
             });
-        }
+    }
 
-    const handleCompleted = () => { 
-        setCompleted(true); 
+    const handleCompleted = () => {
+        setCompleted(true);
         updateTime(lessonNr);
         updateLesson(lessonNr, 1);
     }
@@ -90,7 +90,7 @@ const Course = (props) => {
     }
     const handleDone = () => {
         console.log("kliknuto na pokracovat");
-        
+
         window.location.reload();
     }
 

@@ -36,7 +36,7 @@ const App = () => {
             <Route exact path="/add-user" component={AddUser} />
             <Route exact path="/login" component={userObject ? Dashboard : Login} />
             <Route exact path="/dashboard">
-              {userObject ? <Dashboard userObect={userObject} /> : <Login />}
+              {userObject ? <Dashboard userObject={userObject} /> : <Login />}
             </Route>
             <Route exact path="/course">
             {userObject ? <Course userObject={userObject} /> : <Login />}

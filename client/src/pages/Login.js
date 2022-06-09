@@ -16,15 +16,18 @@ const Login = () => {
 
     return (
         <div>
-            <div>
-                <form>
-                <input type="text" value={vstupOdUzivatele} onInput={(e) => {
-                    setVstupOdUzivatele(e.target.value);
-                }} />
-                <br /> <br />
-                <button type="submit" className='btn btn-positive' onClick={checkUser}>Přihlásit uživatele</button>
+            <h1>přihlášení</h1>
+            <div className="login">
+                <form className='login__form'>
+                    <input placeholder='uživatelské jméno' type="text" value={vstupOdUzivatele} onInput={(e) => {
+                        setVstupOdUzivatele(e.target.value);
+                    }} />
+                    <button type="submit" className='btn btn-positive' onClick={checkUser}>Přihlásit uživatele</button>
                 </form>
-            </div>
+                <div className="login__warning">
+                    Pro pokračování ke kurzu se musíte přihlásit. Pokud nemáte přihlašovací jméno, požádejte o něj na adrese <a href="mailto:lukas@lukaspolansky.cz">lukas@lukaspolansky.cz</a>.
+                </div>
+                </div>
         </div>
     )
 }

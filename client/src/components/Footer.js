@@ -7,22 +7,8 @@ const Footer = (props) => {
   const history = useHistory();
 
   return (
-    <div className="header--content">
-      <div>{message}</div>
-      <br></br>
-      <div className='controls'>
-        <div>
-          <button onClick={() => { history.push("./dashboard") } } className="btn btn-minimal">přehled</button>
-          <button onClick={() => { history.push("./course") } } className="btn btn-minimal">kurz</button>
-        </div>
-        <div>
-          <button className="btn btn-minimal">poslat připomínku</button>
-          <button className='btn' onClick={() => {
-            localStorage.setItem("user", JSON.stringify(""));
-            window.location.reload();
-          }}>Odhlásit se</button>
-        </div>
-      </div>
+    <div className="header__content">
+
     </div>
   )
 }

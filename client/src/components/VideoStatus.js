@@ -5,8 +5,8 @@ const VideoStatus = (props) => {
         <div className="status">
             <p>Kurz {props.completed ? "je dokončený" : "probíhá"}</p>
             <div className="controls">
-                <button disabled={props.completed} onClick={props.handleSkip} className="btn">Přeskočit video</button>
-                <button disabled={!props.completed} onClick={props.handleDone} className="btn btn-positive">Pokračovat</button>
+                <button disabled={props.completed} onClick={props.handleSkip} className="btn btn--negative">Přeskočit video</button>
+                <button disabled={!props.completed} onClick={props.handleDone} className="btn">Pokračovat</button>
             </div>
         </div>
     )
