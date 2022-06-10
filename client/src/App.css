@@ -104,16 +104,28 @@ nav {
   min-width: 200px;
   flex-direction: column;
   gap: 1em;
+  align-items: flex-start;
 }
 
-.login__form input[type=text] {
-  background: none;
+input[type=text] {
+  width: 100%;
+  background: white;
   outline: none;
-  border: none;
-  border-bottom: solid 2px var(--positive);
-  padding: 10px 0px;
+  border: solid 2px var(--inactive);
+  border-radius: 1em;
+  padding: 10px;
+  color: var(--text);
   font-size: 1em;
   font-family: 'Arimo', sans-serif;;
+}
+
+input[type=text]:focus {
+  color: var(--positive);
+  border: solid 2px var(--positive);
+}
+
+input[type=text]::placeholder {
+  color: var(--inactive);
 }
 
 p {
@@ -133,7 +145,7 @@ h1 {
 }
 
 .btn {
-  display: block;
+  display: inline-block;
   padding: 5px 20px;
   margin-left: 10px;
   background: var(--positive);
@@ -145,6 +157,21 @@ h1 {
   font-weight: bold;
   transition: all 0.2s;
   cursor: pointer;
+}
+
+.btn--big {
+  font-size: 1.5em;
+}
+
+i {
+  color: inherit;
+  margin-left: -5px;
+  padding-right: 0.3em;
+}
+
+.header__avatar i {
+  margin-left: 0px;
+  padding-right: 0em;
 }
 
 .btn--negative {

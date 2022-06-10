@@ -34,7 +34,9 @@ const App = () => {
           <Switch>
             <Route exact path="/" component={Main} />
             <Route exact path="/add-user" component={AddUser} />
-            <Route exact path="/login" component={userObject ? Dashboard : Login} />
+            <Route exact path="/login">
+            {userObject ? <Dashboard userObject={userObject} /> : <Login />}
+              </Route>
             <Route exact path="/dashboard">
               {userObject ? <Dashboard userObject={userObject} /> : <Login />}
             </Route>
