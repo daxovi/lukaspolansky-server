@@ -6,7 +6,7 @@ const Dashboard = (props) => {
     const history = useHistory();
     const [userObject, setUserObject] = useState({});
     const [lesson, setLesson] = useState([]);
-    const [lessonTitle, setLessonTitle] = useState("test");
+    const [lessonTitle, setLessonTitle] = useState("Celý kurz jste dokončili, děkujeme.");
     const [preLessonTitle, setPreLessonTitle] = useState("kurz");
     const [preLessonDate, setPreLerssonDate] = useState("");
     const [preLessonStatus, setPreLessonStatus] = useState(0);

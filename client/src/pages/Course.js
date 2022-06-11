@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import VideoPlayer from "../components/VideoPlayer";
 import VideoStatus from "../components/VideoStatus";
 import "./Course.css";
+import Questions from "../components/Questions";
 
 const Course = (props) => {
     const [userObject, setUserObject] = useState({});
@@ -15,6 +16,8 @@ const Course = (props) => {
     const [lessonTitle, setLessonTitle] = useState("kurz");
     const history = useHistory();
     const [videoFile, setVideoFile] = useState("1a.mp4");
+    const [showQuestions, setShowQuestions] = useState(false);
+    const [nextBtnText, setNextBtnText] = useState("pokračovat");
 
     useEffect(() => {
 
@@ -30,6 +33,9 @@ const Course = (props) => {
                     setLessonNr(lessonIndex);
                     setVideoFile(lesson.file);
                     setLessonTitle(lesson.title);
+                    if (lesson.file[1] == "c") {
+                        setNextBtnText("dokončit");
+                    }
                     break;
                 }
             }
@@ -87,18 +93,58 @@ const Course = (props) => {
         console.log("kliknuto na preskocit")
         updateTime(lessonNr);
         updateLesson(lessonNr, 2);
+        if (videoFile[1] == "c") {
+            history.push("./dashboard");
+            window.location.reload();
+        }
     }
-    const handleDone = () => {
+    const handleContinue = () => {
         console.log("kliknuto na pokracovat");
-
         window.location.reload();
     }
+
+    const handleDone = () => {
+        console.log("kliknuto na dokoncit");
+        history.push("./dashboard");
+        window.location.reload();
+    }
+
+    const Content = (props) => {
+        if (!props.isQuestion) {
+            console.log("hraje běžný kurz");
+            return (
+                <VideoPlayer handleEnd={handleCompleted} file={`/video/${videoFile}.mp4`} />
+            )
+        } else if (showQuestions) {
+            console.log("otázky");
+            return (
+                <Questions />
+            )
+        } else {
+            console.log("hraje poslední kurz");
+            return (
+                <VideoPlayer handleEnd={() => { handleCompleted(); setShowQuestions(true) }} file={`/video/${videoFile}.mp4`} />
+            )
+        }
+    }
+
+    const instructions = [
+        "Přichystejte si podložku na cvičení.",
+        "Pohodlně se posaďte a narovnejte se.",
+        "Postavte se před monitor abyste mihli zpívat."
+    ]
 
     return (
         <div>
             <h1>{lessonTitle}</h1>
-            <VideoPlayer handleEnd={handleCompleted} file={`/video/${videoFile}.mp4`} />
-            <VideoStatus completed={completed} handleDone={handleDone} handleSkip={handleSkip} />
+            <Content isQuestion={videoFile[1] == "c"} />
+            <VideoStatus
+                instruction={instructions[videoFile[1].charCodeAt(0)-97]}
+                completed={completed}
+                handleDone={(videoFile[1] == "c") ? handleDone : handleContinue}
+                handleSkip={handleSkip}
+                nextBtnText={nextBtnText}
+            />
         </div>
     )
 }
