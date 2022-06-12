@@ -243,6 +243,13 @@ i {
   justify-content: space-between;
   border-bottom: white solid 1px;
   padding: 0.5em 0em;
+  background-color: none;
+  transition: all 0.2s;
+}
+
+.user__lesson:hover {
+  background-color: white;
+  transition: all 0.2s;
 }
 
 @media screen and (max-width: 700px) {
