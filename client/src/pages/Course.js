@@ -106,7 +106,7 @@ const Course = (props) => {
             )
         } else if (showQuestions) {
             return (
-                <Questions />
+                <Questions text={props.questions} />
             )
         } else {
             return (
@@ -121,10 +121,20 @@ const Course = (props) => {
         "Postavte se před monitor abyste mohli zpívat."
     ]
 
+    const questionTexts = [
+        "První kurzy mi pomáhají zpívat lépe.",
+        "Prostřední lekce mi pomáhají zpívat lépe.",
+        "Nakonec je to docela fajn.",
+        "jsem zvědavý co se nakonec stane",
+        "Mám rád svého učitele",
+        "Nechci online kurzy"
+    ]
+    
+
     return (
         <div>
             <h1>{lessonTitle}</h1>
-            <Content isQuestion={videoFile[1] === "c"} />
+            <Content isQuestion={true || videoFile[1] === "c"} questions={questionTexts} />
             <VideoStatus
                 instruction={instructions[videoFile[1].charCodeAt(0)-97]}
                 completed={completed}

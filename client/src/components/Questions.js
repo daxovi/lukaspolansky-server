@@ -8,39 +8,40 @@ const Questions = (props) => {
     }, [])
 
     const Question = (props) => {
+
         return (
             <div className='question'>
                 <form>
                     <div className='question__eval'>
-                        <h3>Kurzy mi pomáhají zpívat lépe.</h3>
+                        <h3>{props.question}</h3>
 
-                        <div className='rbuttons'>
+                        <div className='rbuttons' onChange={props.onChange}>
                             <div className="rbutton">
                                 <label>
-                                    <input type="radio" id="1" name="drone" value="dewey" />
+                                    <input type="radio" id="1" value="1" />
                                     <div>naprosto souhlasím</div>
                                 </label>
 
                             </div>
                             <div className="rbutton">
                             <label>
-                                <input type="radio" id="2" name="drone" value="dewey" />
+                                <input type="radio" id="2" value="2" />
                                 </label>
                             </div>
                             <div className="rbutton">
                                 <label>
-                                    <input type="radio" id="3" name="drone" value="dewey" />
+                                    <input type="radio" id="3" value="3" />
                                     <div>nevím</div>
                                 </label>
                             </div>
                             <div className="rbutton">
                             <label>
-                                <input type="radio" id="4" name="drone" value="dewey" />
+                                <input type="radio" id="4" value="4" />
                                 </label>
                             </div>
                             <div className="rbutton">
                                 <label>
-                                    <input type="radio" id="5" name="drone" value="dewey" />
+                                    <input type="radio" id="5" value="5" />
                                     <div>naprosto nesouhlasím</div></label>
                             </div>
                         </div>
@@ -50,14 +51,23 @@ const Questions = (props) => {
         )
     }
 
+    let result = [0];
+
+    const onChangeValue = (event, number) => {
+        result[number] = Number(event.target.value);
+        console.log(event.target.value);
+        console.log(result);
+    }
+
     return (
         <div>
             <h2>Dotazník</h2>
             <p>Prosím odpovězde na pár otázek týkyjících se tohoto kurzu. Odpovídejte hodnocením tvrzení o 1 do 10, kdy ohodnocený 10 nejlépe odpovídá realitě a hodnocení 1 nejméně.</p>
-            <Question />
-            <Question />
-            <Question />
-            <Question />
+            {props.text.map((text, i) => {
+                return (
+                    <Question question={text} onChange={(event) => {onChangeValue(event, i)}} />
+                )
+            })}
         </div>
     )
 }
