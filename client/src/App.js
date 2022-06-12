@@ -8,8 +8,9 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import { loggedIn } from './context/CheckLogin';
 import Course from './pages/Course';
-import { useState, createContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Footer from './components/Footer';
+import Admin from './pages/Admin';
 
 const App = () => {
   const [userObject, setUserObject] = useState();
@@ -33,6 +34,7 @@ const App = () => {
         <div className="content">
           <Switch>
             <Route exact path="/" component={Main} />
+            <Route exact path="/admin" component={Admin} />
             <Route exact path="/add-user" component={AddUser} />
             <Route exact path="/login">
             {userObject ? <Dashboard userObject={userObject} /> : <Login />}

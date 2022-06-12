@@ -1,7 +1,5 @@
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState } from "react"
 import React from 'react'
-import Footer from "../components/Footer";
-import { loggedIn } from "../context/CheckLogin";
 import { useHistory } from "react-router-dom";
 import VideoPlayer from "../components/VideoPlayer";
 import VideoStatus from "../components/VideoStatus";
@@ -27,13 +25,12 @@ const Course = (props) => {
             const lessons = props.userObject.course;
 
             for (let [lessonIndex, lesson] of lessons.entries()) {
-                if (lesson.completed == 0) {
-                    console.log(lesson.title);
+                if (lesson.completed === 0) {
                     setLesson(lesson);
                     setLessonNr(lessonIndex);
                     setVideoFile(lesson.file);
                     setLessonTitle(lesson.title);
-                    if (lesson.file[1] == "c") {
+                    if (lesson.file[1] === "c") {
                         setNextBtnText("dokončit");
                     }
                     break;
@@ -56,9 +53,8 @@ const Course = (props) => {
             },
         })
             .then((response) => response.json())
-            .then((json) => {
-                console.log({ json });
-                if (state == 2) {
+            .then(() => {
+                if (state === 2) {
                     window.location.reload()
                 }
             });
@@ -77,11 +73,7 @@ const Course = (props) => {
                 'Content-type': 'application/json; charset=UTF-8',
             },
         })
-            .then((response) => response.json())
-            .then((json) => {
-                console.log({ json });
-                // window.location.reload()
-            });
+            .then((response) => response.json());
     }
 
     const handleCompleted = () => {
@@ -93,35 +85,30 @@ const Course = (props) => {
         console.log("kliknuto na preskocit")
         updateTime(lessonNr);
         updateLesson(lessonNr, 2);
-        if (videoFile[1] == "c") {
+        if (videoFile[1] === "c") {
             history.push("./dashboard");
             window.location.reload();
         }
     }
     const handleContinue = () => {
-        console.log("kliknuto na pokracovat");
         window.location.reload();
     }
 
     const handleDone = () => {
-        console.log("kliknuto na dokoncit");
         history.push("./dashboard");
         window.location.reload();
     }
 
     const Content = (props) => {
         if (!props.isQuestion) {
-            console.log("hraje běžný kurz");
             return (
                 <VideoPlayer handleEnd={handleCompleted} file={`/video/${videoFile}.mp4`} />
             )
         } else if (showQuestions) {
-            console.log("otázky");
             return (
                 <Questions />
             )
         } else {
-            console.log("hraje poslední kurz");
             return (
                 <VideoPlayer handleEnd={() => { handleCompleted(); setShowQuestions(true) }} file={`/video/${videoFile}.mp4`} />
             )
@@ -131,17 +118,17 @@ const Course = (props) => {
     const instructions = [
         "Přichystejte si podložku na cvičení.",
         "Pohodlně se posaďte a narovnejte se.",
-        "Postavte se před monitor abyste mihli zpívat."
+        "Postavte se před monitor abyste mohli zpívat."
     ]
 
     return (
         <div>
             <h1>{lessonTitle}</h1>
-            <Content isQuestion={videoFile[1] == "c"} />
+            <Content isQuestion={videoFile[1] === "c"} />
             <VideoStatus
                 instruction={instructions[videoFile[1].charCodeAt(0)-97]}
                 completed={completed}
-                handleDone={(videoFile[1] == "c") ? handleDone : handleContinue}
+                handleDone={(videoFile[1] === "c") ? handleDone : handleContinue}
                 handleSkip={handleSkip}
                 nextBtnText={nextBtnText}
             />

@@ -1,7 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
-import { useContext } from 'react';
 
 const Header = (props) => {
     const history = useHistory();
@@ -14,7 +13,7 @@ const Header = (props) => {
 
     const Button = (props) => {
         let pathname = location.pathname;
-        if (pathname == props.path) {
+        if (pathname === props.path) {
             return (
                 <button className="header__btn header__btn--highlight">
                     {props.title}
@@ -43,7 +42,7 @@ const Header = (props) => {
         } else {
             return (
                 <ul>
-                    <li className="header__avatar"><i class="bi bi-music-note"></i></li>
+                    <li className="header__avatar"><i className="bi bi-music-note"></i></li>
                     <li className='header__name'>lukiho online kurzy zpěvu</li>
                     <li><Button title="o projektu" path="/" /></li>
                 </ul>
@@ -54,11 +53,11 @@ const Header = (props) => {
     const Login = (props) => {
         if (props.userObject) {
             return (
-                <button onClick={() => logout()} className="header__btn header__btn--negative"><i class="bi bi-box-arrow-left"></i>odhlásit se</button>
+                <button onClick={() => logout()} className="header__btn header__btn--negative"><i className="bi bi-box-arrow-left"></i>odhlásit se</button>
             )
         } else {
             return (
-                <button onClick={() => history.push("./login")} className="header__btn"><i class="bi bi-box-arrow-in-right"></i>přihlásit se</button>
+                <button onClick={() => history.push("./login")} className="header__btn"><i className="bi bi-box-arrow-in-right"></i>přihlásit se</button>
             )
         }
     }

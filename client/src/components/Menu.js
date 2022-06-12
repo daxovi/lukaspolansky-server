@@ -9,7 +9,7 @@ const Menu = () => {
     });
 
     return (
-        <div class="menu">
+        <div className="menu">
             <div>Přihlášený uživatel {user}</div>
         </div>
     )
