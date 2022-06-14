@@ -26,27 +26,27 @@ const Admin = (props) => {
             </h1>
             {users?.map((user, i) => {
                 return (
-                <div className="user">
-                    <h3>{user.name}</h3>
-                    
-                    {user.course.map((lesson, i) => {
-                        let date = new Date(lesson.date);
-                        return (
-                            <div className='user__lesson'>
-                                <div>{(lesson.completed === 1) ? <i className="bi bi-check-lg user__lesson--positive"></i> : ""} 
-                                    {(lesson.completed === 2) ? <i class="bi bi-x-lg user__lesson--negative"></i> : ""} {lesson.file} {lesson.title}</div>
-                                    <div>
-                                    {lesson.eval}
-                                        </div>
-                                <div>
-                                    {(lesson.completed > 0) ? <span>{date.toLocaleString() }</span> : "nedokončeno"} 
+                    <div className="user active">
+                        <h3 onClick={(e) => console.log(e.target.parentElement.classList.toggle("active"))}>{user.name}</h3>
 
+                        {user.course.map((lesson, i) => {
+                            let date = new Date(lesson.date);
+                            return (
+                                <div className='user__lesson'>
+                                    <div>{(lesson.completed === 1) ? <i className="bi bi-check-lg user__lesson--positive"></i> : ""}
+                                        {(lesson.completed === 2) ? <i class="bi bi-x-lg user__lesson--negative"></i> : ""} {lesson.file} {lesson.title}</div>
+                                    <div>
+                                        {(lesson.eval.length > 1) ? <span>{lesson.eval.join(' ')}</span> : ""}
+                                    </div>
+                                    <div>
+                                        {(lesson.completed > 0) ? <span>{date.toLocaleString()}</span> : "nedokončeno"}
+
+                                    </div>
                                 </div>
-                            </div>
-                        )
-                    })}
-                    <br />
-                </div>
+                            )
+                        })}
+                        <br />
+                    </div>
                 )
             })}
         </div>

@@ -235,7 +235,11 @@ i {
 .user {
   display: flex;
   flex-direction: column;
+}
 
+.active {
+  height: 2em;
+  overflow: hidden;
 }
 
 .user__lesson {
