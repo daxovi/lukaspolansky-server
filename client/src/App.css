@@ -235,10 +235,18 @@ i {
 .user {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+}
+
+.user h3 {
+  background-color: white;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  cursor: pointer;
 }
 
 .active {
-  height: 2em;
+  height: 3.5em;
   overflow: hidden;
 }
 
