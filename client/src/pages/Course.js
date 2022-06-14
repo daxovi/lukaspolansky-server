@@ -11,19 +11,17 @@ const Course = (props) => {
     const [completed, setCompleted] = useState(false);
     const [lesson, setLesson] = useState();
     const [lessonNr, setLessonNr] = useState(0);
-    const [lessonTitle, setLessonTitle] = useState("kurz");
+    const [lessonTitle, setLessonTitle] = useState("Ukončení kurzu");
     const history = useHistory();
-    const [videoFile, setVideoFile] = useState("1a.mp4");
+    const [videoFile, setVideoFile] = useState("1a");
     const [showQuestions, setShowQuestions] = useState(false);
     const [nextBtnText, setNextBtnText] = useState("pokračovat");
 
     useEffect(() => {
-
         if (props.userObject) {
             setUserObject(props.userObject);
 
             const lessons = props.userObject.course;
-
             for (let [lessonIndex, lesson] of lessons.entries()) {
                 if (lesson.completed === 0) {
                     setLesson(lesson);
@@ -39,6 +37,7 @@ const Course = (props) => {
         }
     }, [])
 
+    // aktualizace databáze
     const updateLesson = (lessonIndex, state) => {
         const userId = userObject._id;
         const url = `http://localhost:4000/save-user/${userId}`;
@@ -76,11 +75,35 @@ const Course = (props) => {
             .then((response) => response.json());
     }
 
+    const updateEval = (lessonIndex, result) => {
+        let cleanResult;
+        cleanResult = Array.from(result, v => v === undefined ? 0 : v);
+
+        const userId = userObject._id;
+        const url = `http://localhost:4000/save-user/${userId}`;
+
+        fetch(url, {
+            method: 'PATCH',
+            body: JSON.stringify({
+                ["course." + lessonIndex + ".eval"]: cleanResult
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+            .then((response) => response.json());
+    }
+
+    let result = [0];
+
+    // Dokončené přehrání videa
     const handleCompleted = () => {
         setCompleted(true);
         updateTime(lessonNr);
         updateLesson(lessonNr, 1);
     }
+
+    // Stitknutí tlačítka přeskočit
     const handleSkip = () => {
         console.log("kliknuto na preskocit")
         updateTime(lessonNr);
@@ -90,15 +113,21 @@ const Course = (props) => {
             window.location.reload();
         }
     }
+
+    // Stisknutí tlačítka pokračovat
     const handleContinue = () => {
+        updateEval(lessonNr, result);
         window.location.reload();
     }
 
+    // Stitknutí tlačítka dokončit
     const handleDone = () => {
+        updateEval(lessonNr, result);
         history.push("./dashboard");
         window.location.reload();
     }
 
+    // Rozdělení na videa s otázkami a bez otázek
     const Content = (props) => {
         if (!props.isQuestion) {
             return (
@@ -106,7 +135,7 @@ const Course = (props) => {
             )
         } else if (showQuestions) {
             return (
-                <Questions text={props.questions} />
+                <Questions text={props.questions} onChangeValue={onChangeValue} />
             )
         } else {
             return (
@@ -115,12 +144,14 @@ const Course = (props) => {
         }
     }
 
+    // textové instrukce
     const instructions = [
         "Přichystejte si podložku na cvičení.",
         "Pohodlně se posaďte a narovnejte se.",
         "Postavte se před monitor abyste mohli zpívat."
     ]
 
+    // texty otázek
     const questionTexts = [
         "První kurzy mi pomáhají zpívat lépe.",
         "Prostřední lekce mi pomáhají zpívat lépe.",
@@ -129,8 +160,14 @@ const Course = (props) => {
         "Mám rád svého učitele",
         "Nechci online kurzy"
     ]
-    
 
+    // sbírání dat z radiobutton otázek
+    const onChangeValue = (event, number) => {
+        result[number] = Number(event.target.value);
+        console.log(event.target.value);
+        console.log(result);
+    }
+    
     return (
         <div>
             <h1>{lessonTitle}</h1>

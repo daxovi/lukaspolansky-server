@@ -65,7 +65,8 @@ const Dashboard = (props) => {
                 <PreStatus isPreStatus={preLessonStatus > 0} />
             </div>
             <br />
-            <button className='btn btn-positive btn--big' onClick={() => { history.push("/course") }}><i className="bi bi-play"></i>pokračovat v další lekci</button>
+            {(lessonTitle === "Celý kurz jste dokončili, děkujeme.") ? "" : <button className='btn btn-positive btn--big' onClick={() => { history.push("/course") }}><i className="bi bi-play"></i>pokračovat v další lekci</button>}
+            
 
         </div>
     )

@@ -18,30 +18,30 @@ const Questions = (props) => {
                         <div className='rbuttons' onChange={props.onChange}>
                             <div className="rbutton">
                                 <label>
-                                    <input type="radio" id="1" value="1" />
+                                    <input type="radio" id="1" value="1" name="question"/>
                                     <div>naprosto souhlasím</div>
                                 </label>
 
                             </div>
                             <div className="rbutton">
                             <label>
-                                <input type="radio" id="2" value="2" />
+                                <input type="radio" id="2" value="2" name="question"/>
                                 </label>
                             </div>
                             <div className="rbutton">
                                 <label>
-                                    <input type="radio" id="3" value="3" />
+                                    <input type="radio" id="3" value="3" name="question"/>
                                     <div>nevím</div>
                                 </label>
                             </div>
                             <div className="rbutton">
                             <label>
-                                <input type="radio" id="4" value="4" />
+                                <input type="radio" id="4" value="4" name="question"/>
                                 </label>
                             </div>
                             <div className="rbutton">
                                 <label>
-                                    <input type="radio" id="5" value="5" />
+                                    <input type="radio" id="5" value="5" name="question"/>
                                     <div>naprosto nesouhlasím</div></label>
                             </div>
                         </div>
@@ -53,19 +53,13 @@ const Questions = (props) => {
 
     let result = [0];
 
-    const onChangeValue = (event, number) => {
-        result[number] = Number(event.target.value);
-        console.log(event.target.value);
-        console.log(result);
-    }
-
     return (
         <div>
             <h2>Dotazník</h2>
             <p>Prosím odpovězde na pár otázek týkyjících se tohoto kurzu. Odpovídejte hodnocením tvrzení o 1 do 10, kdy ohodnocený 10 nejlépe odpovídá realitě a hodnocení 1 nejméně.</p>
             {props.text.map((text, i) => {
                 return (
-                    <Question question={text} onChange={(event) => {onChangeValue(event, i)}} />
+                    <Question key={i} question={text} onChange={(event) => {props.onChangeValue(event, i)}} />
                 )
             })}
         </div>
