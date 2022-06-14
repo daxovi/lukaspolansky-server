@@ -252,6 +252,20 @@ i {
   transition: all 0.2s;
 }
 
+.user__lesson i {
+  margin-left: 0em;
+  flex: 1;
+}
+
+.user__lesson--negative {
+  color: var(--negative)
+}
+
+.user__lesson--positive {
+  color: var(--positive)
+}
+
+
 @media screen and (max-width: 700px) {
   body {
     font-size: 0.9em;

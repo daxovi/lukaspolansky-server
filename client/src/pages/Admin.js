@@ -33,11 +33,13 @@ const Admin = (props) => {
                         let date = new Date(lesson.date);
                         return (
                             <div className='user__lesson'>
-                                <div>{lesson.file} {lesson.title}</div>
+                                <div>{(lesson.completed === 1) ? <i className="bi bi-check-lg user__lesson--positive"></i> : ""} 
+                                    {(lesson.completed === 2) ? <i class="bi bi-x-lg user__lesson--negative"></i> : ""} {lesson.file} {lesson.title}</div>
+                                    <div>
+                                    {lesson.eval}
+                                        </div>
                                 <div>
-                                    {(lesson.completed === 0) ? "nedokončeno" : ""}
-                                    {(lesson.completed === 1) ? <span><i className="bi bi-check-lg"></i>{date.toLocaleString() }</span> : ""} 
-                                    {(lesson.completed === 2) ? <span><i class="bi bi-x-lg"></i>{date.toLocaleString() }</span> : ""} 
+                                    {(lesson.completed > 0) ? <span>{date.toLocaleString() }</span> : "nedokončeno"} 
 
                                 </div>
                             </div>
