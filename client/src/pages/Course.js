@@ -9,11 +9,10 @@ import Questions from "../components/Questions";
 const Course = (props) => {
     const [userObject, setUserObject] = useState({});
     const [completed, setCompleted] = useState(false);
-    const [lesson, setLesson] = useState();
     const [lessonNr, setLessonNr] = useState(0);
     const [lessonTitle, setLessonTitle] = useState("Ukončení kurzu");
     const history = useHistory();
-    const [videoFile, setVideoFile] = useState("1a");
+    const [videoFile, setVideoFile] = useState("0");
     const [showQuestions, setShowQuestions] = useState(false);
     const [nextBtnText, setNextBtnText] = useState("pokračovat");
 
@@ -22,9 +21,10 @@ const Course = (props) => {
             setUserObject(props.userObject);
 
             const lessons = props.userObject.course;
+            let endControl = true;
             for (let [lessonIndex, lesson] of lessons.entries()) {
                 if (lesson.completed === 0) {
-                    setLesson(lesson);
+                    endControl = false;
                     setLessonNr(lessonIndex);
                     setVideoFile(lesson.file);
                     setLessonTitle(lesson.title);
@@ -33,6 +33,9 @@ const Course = (props) => {
                     }
                     break;
                 }
+            }
+            if (endControl) {
+                history.push("./dashboard");
             }
         }
     }, [])
@@ -171,9 +174,9 @@ const Course = (props) => {
     return (
         <div>
             <h1>{lessonTitle}</h1>
-            <Content isQuestion={true || videoFile[1] === "c"} questions={questionTexts} />
+            <Content isQuestion={videoFile[1] === "c"} questions={questionTexts} />
             <VideoStatus
-                instruction={instructions[videoFile[1].charCodeAt(0)-97]}
+                instruction={(instructions[videoFile[1]?.charCodeAt(0)-97]) ? instructions[videoFile[1].charCodeAt(0)-97] : "Děkujeme" }
                 completed={completed}
                 handleDone={(videoFile[1] === "c") ? handleDone : handleContinue}
                 handleSkip={handleSkip}

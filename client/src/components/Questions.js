@@ -51,8 +51,6 @@ const Questions = (props) => {
         )
     }
 
-    let result = [0];
-
     return (
         <div>
             <h2>Dotazník</h2>
