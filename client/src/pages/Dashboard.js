@@ -1,6 +1,8 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
+import React from 'react';
+import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+
+const settings = require('../course.json');
 
 const Dashboard = (props) => {
     const [lessonTitle, setLessonTitle] = useState("Celý kurz jste dokončili, děkujeme.");
@@ -69,7 +71,7 @@ const Dashboard = (props) => {
     return (
         <div>
             <h1>
-                přehled
+                {settings.menuDashboard}
             </h1>
             <div className='dashboard dashboard__next'>
                     <img src={`/thumbnail/${lessonVideoFile}.jpg`} alt="actual lesson thumbnail"></img>
@@ -77,7 +79,7 @@ const Dashboard = (props) => {
                     <div>
                     {(lessonTitle === "Celý kurz jste dokončili, děkujeme.") ? "" : <span> Následující kurz: <br /></span>}
                     <strong>{lessonTitle}</strong> <br /><br />
-                    {(lessonTitle === "Celý kurz jste dokončili, děkujeme.") ? "" : <span>Budete potřebovat asi 20 minut času, klidné místo, podložku na podlaze a dobrou náladu. <br /> <br /></span>}
+                    {(lessonTitle === "Celý kurz jste dokončili, děkujeme.") ? "" : <span>{settings.generalInstruction}<br /> <br /></span>}
 
                     </div>
                     <div>

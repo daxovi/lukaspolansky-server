@@ -1,0 +1,39 @@
+{
+    "descriptionInstructions": "popisky/instrukce k jednotlivým videím",
+    "instructions": [
+        "Přichystejte si podložku na cvičení.",
+        "Pohodlně se posaďte a narovnejte se.",
+        "Postavte se před monitor abyste mohli zpívat."
+    ],
+    "generalInstruction": "Připravte si podložku a dobrou náladu.",
+    "descriptionQuestionTexts": "otázky do dotazníků",
+    "questionTexts": [
+        "První kurzy mi pomáhají zpívat lépe.",
+        "Prostřední lekce mi pomáhají zpívat lépe.",
+        "Nakonec je to docela fajn.",
+        "jsem zvědavý co se nakonec stane",
+        "Mám rád svého učitele",
+        "Nechci online kurzy"
+    ],
+
+    "lastVideoOfLesson": "c",
+
+    "descriptionQuestionParts": "označení videa za kterým následuje dotazník, pomocí jednoho z nastavených písmen",
+    "questionParts": [
+        "c",
+        "a"
+    ],
+
+    "defaultTitle": "Lukiho výuka zpěvu",
+
+    "buttonNext": "pokračovat",
+    "buttonDone": "dokončit",
+    "buttonSkip": "přeskočit",
+
+    "menuDashboard": "přehled",
+    "menuContinue": "pokračovat v kurzu",
+    "menuAbout": "o projektu",
+
+    "menuLogin": "přihlásit",
+    "menuLogout": "odhlásit"
+}

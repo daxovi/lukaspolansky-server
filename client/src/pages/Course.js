@@ -6,15 +6,17 @@ import VideoStatus from "../components/VideoStatus";
 import "./Course.css";
 import Questions from "../components/Questions";
 
+const settings = require('../course.json');
+
 const Course = (props) => {
     const [userObject, setUserObject] = useState({});
     const [completed, setCompleted] = useState(false);
     const [lessonNr, setLessonNr] = useState(0);
-    const [lessonTitle, setLessonTitle] = useState("Ukončení kurzu");
+    const [lessonTitle, setLessonTitle] = useState("");
     const history = useHistory();
     const [videoFile, setVideoFile] = useState("0");
     const [showQuestions, setShowQuestions] = useState(false);
-    const [nextBtnText, setNextBtnText] = useState("pokračovat");
+    const [nextBtnText, setNextBtnText] = useState(settings.buttonNext);
 
     useEffect(() => {
         if (props.userObject) {
@@ -28,8 +30,8 @@ const Course = (props) => {
                     setLessonNr(lessonIndex);
                     setVideoFile(lesson.file);
                     setLessonTitle(lesson.title);
-                    if (lesson.file[1] === "c") {
-                        setNextBtnText("dokončit");
+                    if (lesson.file[1] === settings.lastVideoOfLesson) {
+                        setNextBtnText(settings.buttonDone);
                     }
                     break;
                 }
@@ -108,10 +110,9 @@ const Course = (props) => {
 
     // Stitknutí tlačítka přeskočit
     const handleSkip = () => {
-        console.log("kliknuto na preskocit")
         updateTime(lessonNr);
         updateLesson(lessonNr, 2);
-        if (videoFile[1] === "c") {
+        if (videoFile[1] === settings.lastVideoOfLesson) {
             history.push("./dashboard");
             window.location.reload();
         }
@@ -148,21 +149,10 @@ const Course = (props) => {
     }
 
     // textové instrukce
-    const instructions = [
-        "Přichystejte si podložku na cvičení.",
-        "Pohodlně se posaďte a narovnejte se.",
-        "Postavte se před monitor abyste mohli zpívat."
-    ]
+    const instructions = settings.instructions;
 
     // texty otázek
-    const questionTexts = [
-        "První kurzy mi pomáhají zpívat lépe.",
-        "Prostřední lekce mi pomáhají zpívat lépe.",
-        "Nakonec je to docela fajn.",
-        "jsem zvědavý co se nakonec stane",
-        "Mám rád svého učitele",
-        "Nechci online kurzy"
-    ]
+    const questionTexts = settings.questionTexts;
 
     // sbírání dat z radiobutton otázek
     const onChangeValue = (event, number) => {
@@ -174,11 +164,11 @@ const Course = (props) => {
     return (
         <div>
             <h1>{lessonTitle}</h1>
-            <Content isQuestion={videoFile[1] === "c"} questions={questionTexts} />
+            <Content isQuestion={settings.questionParts.includes(videoFile[1])} questions={questionTexts} />
             <VideoStatus
-                instruction={(instructions[videoFile[1]?.charCodeAt(0)-97]) ? instructions[videoFile[1].charCodeAt(0)-97] : "Děkujeme" }
+                instruction={(instructions[videoFile[videoFile.length - 1]?.charCodeAt(0)-97]) ? instructions[videoFile[videoFile.length - 1].charCodeAt(0)-97] : <span></span> }
                 completed={completed}
-                handleDone={(videoFile[1] === "c") ? handleDone : handleContinue}
+                handleDone={(videoFile[1] === settings.lastVideoOfLesson) ? handleDone : handleContinue}
                 handleSkip={handleSkip}
                 nextBtnText={nextBtnText}
             />
