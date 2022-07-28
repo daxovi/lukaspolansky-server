@@ -112,7 +112,7 @@ const Course = (props) => {
     const handleSkip = () => {
         updateTime(lessonNr);
         updateLesson(lessonNr, 2);
-        if (videoFile[1] === settings.lastVideoOfLesson) {
+        if (videoFile[videoFile.length - 1] === settings.lastVideoOfLesson) {
             history.push("./dashboard");
             window.location.reload();
         }
@@ -159,6 +159,7 @@ const Course = (props) => {
         result[number] = Number(event.target.value);
         console.log(event.target.value);
         console.log(result);
+        updateEval(lessonNr, result);
     }
     
     return (
@@ -168,7 +169,7 @@ const Course = (props) => {
             <VideoStatus
                 instruction={(instructions[videoFile[videoFile.length - 1]?.charCodeAt(0)-97]) ? instructions[videoFile[videoFile.length - 1].charCodeAt(0)-97] : <span></span> }
                 completed={completed}
-                handleDone={(videoFile[1] === settings.lastVideoOfLesson) ? handleDone : handleContinue}
+                handleDone={(videoFile[videoFile.length - 1] === settings.lastVideoOfLesson) ? handleDone : handleContinue}
                 handleSkip={handleSkip}
                 nextBtnText={nextBtnText}
             />
