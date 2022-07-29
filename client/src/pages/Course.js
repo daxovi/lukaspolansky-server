@@ -133,26 +133,15 @@ const Course = (props) => {
 
     // Rozdělení na videa s otázkami a bez otázek
     const Content = (props) => {
-        if (!props.isQuestion) {
-            return (
-                <VideoPlayer handleEnd={handleCompleted} file={`/video/${videoFile}.mp4`} />
-            )
-        } else if (showQuestions) {
-            return (
-                <Questions text={props.questions} onChangeValue={onChangeValue} />
-            )
-        } else {
-            return (
-                <VideoPlayer handleEnd={() => { handleCompleted(); setShowQuestions(true) }} file={`/video/${videoFile}.mp4`} />
-            )
-        }
+        if (!props.isQuestion) return ( <VideoPlayer handleEnd={handleCompleted} file={`/video/${videoFile}.mp4`} /> )
+        else if (showQuestions) return ( <Questions text={props.questions} onChangeValue={onChangeValue} /> )
+        else return ( <VideoPlayer handleEnd={() => { handleCompleted(); setShowQuestions(true) }} file={`/video/${videoFile}.mp4`} /> )
     }
 
     // textové instrukce
-    const instructions = settings.instructions;
-
     // texty otázek
-    const questionTexts = settings.questionTexts;
+    const { instructions, questionTexts, lastVideoOfLesson, questionParts } = settings;
+    const lastCharacterOfFile = videoFile[videoFile.length - 1];
 
     // sbírání dat z radiobutton otázek
     const onChangeValue = (event, number) => {
@@ -165,11 +154,11 @@ const Course = (props) => {
     return (
         <div>
             <h1>{lessonTitle}</h1>
-            <Content isQuestion={settings.questionParts.includes(videoFile[1])} questions={questionTexts} />
+            <Content isQuestion={questionParts.includes(videoFile[1])} questions={questionTexts} />
             <VideoStatus
-                instruction={(instructions[videoFile[videoFile.length - 1]?.charCodeAt(0)-97]) ? instructions[videoFile[videoFile.length - 1].charCodeAt(0)-97] : <span></span> }
+                instruction={(instructions[lastCharacterOfFile?.charCodeAt(0)-97]) ? instructions[lastCharacterOfFile.charCodeAt(0)-97] : <span></span> }
                 completed={completed}
-                handleDone={(videoFile[videoFile.length - 1] === settings.lastVideoOfLesson) ? handleDone : handleContinue}
+                handleDone={(lastCharacterOfFile === lastVideoOfLesson) ? handleDone : handleContinue}
                 handleSkip={handleSkip}
                 nextBtnText={nextBtnText}
             />

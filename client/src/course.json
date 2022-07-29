@@ -16,9 +16,10 @@
         "Nechci online kurzy"
     ],
 
+    "descriptionLastVideoOfLesson": "označení posledního videa kurzu pomocí posledního písmene, po něm se vrátí aplikace na dashboard,",
     "lastVideoOfLesson": "c",
 
-    "descriptionQuestionParts": "označení videa za kterým následuje dotazník, pomocí jednoho z nastavených písmen",
+    "descriptionQuestionParts": "označení videa za kterým následuje dotazník, pomocí jednoho z nastavených písmen na druhé pozici",
     "questionParts": [
         "c"
     ],

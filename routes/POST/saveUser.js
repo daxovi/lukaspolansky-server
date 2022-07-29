@@ -8,8 +8,8 @@ saveUser.post("/save-user", (req, res) => {
         course:
             [
                 {
-                    title: "První kurz a první video nadpis",
-                    file: "1a",
+                    title: "První kurz a první a poslední video nadpis",
+                    file: "1ac",
                     completed: 0,
                     date: Date.now(),
                     eval: [0]
