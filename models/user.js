@@ -13,73 +13,7 @@ const user = new mongoose.Schema({
         type: String,
     },
     course:
-        [lesson
-            /*
-            {
-                title: String,
-                file: String,
-                completed: Number,
-                date: Date,
-                eval: [Number]
-            },
-            {
-                title: String,
-                file: String,
-                completed: Number,
-                date: Date,
-                eval: [Number]
-            },
-            {
-                title: String,
-                file: String,
-                completed: Number,
-                date: Date,
-                eval: [Number]
-            },
-            {
-                title: String,
-                file: String,
-                completed: Number,
-                date: Date,
-                eval: [Number]
-            },
-            {
-                title: String,
-                file: String,
-                completed: Number,
-                date: Date,
-                eval: [Number]
-            },
-            {
-                title: String,
-                file: String,
-                completed: Number,
-                date: Date,
-                eval: [Number]
-            },
-            {
-                title: String,
-                file: String,
-                completed: Number,
-                date: Date,
-                eval: [Number]
-            },
-            {
-                title: String,
-                file: String,
-                completed: Number,
-                date: Date,
-                eval: [Number]
-            },
-            {
-                title: String,
-                file: String,
-                completed: Number,
-                date: Date,
-                eval: [Number]
-            }
-            */
-        ],
+        [lesson],
 });
 
 module.exports = mongoose.model("User", user);
