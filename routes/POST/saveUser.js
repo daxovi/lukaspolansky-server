@@ -8,57 +8,48 @@ saveUser.post("/save-user", (req, res) => {
         course:
             [
                 {
-                    title: "První kurz a první a poslední video nadpis",
                     file: "1ac",
                     completed: 0,
                     date: Date.now(),
                     eval: [0]
                 }, {
-                    title: "První kurz a druhé video nadpis",
                     file: "1b",
                     completed: 0,
                     date: Date.now(),
                     eval: [0]
                 }, {
-                    title: "První kurz a třetí video nadpis",
                     file: "1c",
                     completed: 0,
                     date: Date.now(),
                     eval: [0]
                 },
                 {
-                    title: "Druhý kurz a první video nadpis",
                     file: "2a",
                     completed: 0,
                     date: Date.now(),
                     eval: [0]
                 }, {
-                    title: "Druhý kurz a druhé video nadpis",
                     file: "2b",
                     completed: 0,
                     date: Date.now(),
                     eval: [0]
                 }, {
-                    title: "Druhý kurz a třetí video nadpis",
                     file: "2c",
                     completed: 0,
                     date: Date.now(),
                     eval: [0]
                 },
                 {
-                    title: "Třetí kurz a první video nadpis",
                     file: "3a",
                     completed: 0,
                     date: Date.now(),
                     eval: [0]
                 }, {
-                    title: "Třetí kurz a druhé video nadpis",
                     file: "3b",
                     completed: 0,
                     date: Date.now(),
                     eval: [0]
                 }, {
-                    title: "Třetí kurz a třetí video nadpis",
                     file: "3c",
                     completed: 0,
                     date: Date.now(),
