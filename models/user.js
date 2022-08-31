@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const lesson = new mongoose.Schema({
-    title: String,
     file: String,
     completed: Number,
     date: Date,
