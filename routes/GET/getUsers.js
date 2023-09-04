@@ -3,6 +3,7 @@ const user = require("../../models/user");
 
 getUsers.get("/get-users", (req,res) => {
     user.find({}, (err,docs) => {
+        
         if(err){
             return res.json({
                 msg:"Nepodařilo se načíst uživatele",
@@ -10,7 +11,7 @@ getUsers.get("/get-users", (req,res) => {
             })
         }else{
             return res.json({
-                msg:"Úspěšně se porařilo načíst uživatele",
+                msg:"Úspěšně se podařilo načíst uživatele",
                 documents:docs
             })
         }

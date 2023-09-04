@@ -11,7 +11,7 @@ class dbConnect {
         },(err) => {
             if(err) throw new Error("K databázi se nejde připojit");
             console.log("Připojeno úspěšně k databázi");
-        } )
+        })
     }
 }
 
